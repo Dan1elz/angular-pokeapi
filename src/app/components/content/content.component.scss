@@ -1,0 +1,21 @@
+:host {
+  display: block;
+  background-color: #f5f5f5;
+}
+.content {
+  display: flex;
+  justify-content: center;
+  padding-top: 5rem;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  gap: 10px;
+}
+.pagination {
+  margin-top: 2rem;
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  background-color: #fff;
+}

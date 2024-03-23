@@ -1,0 +1,15 @@
+<div class="content">
+    <div class="cards-grid">
+        <div class="cards" *ngFor="let p of favorites">
+            <app-card [url]="p.url"></app-card>
+        </div>
+    </div>
+</div>
+<div class="pagination">
+    <mat-paginator
+    [length]="max"
+    (page)="onPageChange($event)"  [pageSize]="25"
+    [pageSizeOptions]="[10, 15, 25, 50]"
+    aria-label="Select page"
+  >
+  </mat-paginator>

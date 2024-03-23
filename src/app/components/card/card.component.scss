@@ -1,0 +1,104 @@
+@use 'colors' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:host {
+  display: block;
+}
+mat-card {
+  cursor: pointer;
+  width: 152px;
+  position: relative;
+  min-height: 238px;
+
+  &:hover {
+    .imgs {
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.2);
+        pointer-events: none; 
+        z-index: 1;
+      }
+    }
+  }
+
+  .imgs {
+    border-radius: 5px;
+    position: relative;
+    img { z-index: 2;}
+    
+
+    .icon-favorite {
+      position: absolute;
+      display: none;
+      top: 5px;
+      right: 5px;
+      border: none;
+      outline: none;
+      background-color: transparent;
+      color: #ffffff;
+      z-index: 4;
+      transition: 200ms;
+
+      mat-icon {
+        font-size: 1.5rem;
+        width: auto;
+        height: auto;
+      }
+    }
+    .visible {
+      display: block;
+    }
+    .fill {
+      color: #b60d0d;
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.0);
+      pointer-events: none; 
+      z-index: 1;
+      transition: 200ms;
+    }
+  }
+  .header-nav {
+    background-color: transparent;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    padding: 0 5px;
+    font-weight: 300;
+  }
+  mat-icon {
+    font-size: 1rem;
+  }
+  mat-card-header {
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0;
+    margin-left: 5px;
+    text-transform: capitalize;
+  }
+  mat-card-content {
+    position: absolute;
+    bottom: -10px;
+    right: 0;
+  }
+  .icons {
+
+    width: 25px;
+  }
+}

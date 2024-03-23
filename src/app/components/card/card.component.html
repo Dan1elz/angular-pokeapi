@@ -1,0 +1,20 @@
+<mat-card (mouseleave)="toggleCard()" (mouseenter)="toggleCard()" (click)="openPokemon()">
+
+    <div  class="imgs element element-{{pokemon.types[0]}} ">
+        <button (click)="toggleFav($event)"
+        [ngClass]="{'icon-favorite': true, 'visible': isHovered, 'fill': toggle}"><mat-icon>{{fav}}</mat-icon></button>
+        <img src="../../../assets/images/pokemon/{{pokemon.id}}.png" 
+        alt="{{ pokemon.name }}"  mat-card-lg-image>
+    </div>
+    <div class="header-nav">
+        <span>#{{ formatID(pokemon.id) }}</span>
+        <span>EXP: {{formatID(pokemon.exp)}}</span>
+    </div>  
+  
+    <mat-card-header>{{pokemon.name}}</mat-card-header>
+    <mat-card-content>
+        <span *ngFor="let type of pokemon.types" class="type-icon">
+            <img class="icons" src="../../../assets/images/icons/{{typeIcons[type]}}.png" alt="">
+        </span>
+    </mat-card-content>    
+</mat-card>

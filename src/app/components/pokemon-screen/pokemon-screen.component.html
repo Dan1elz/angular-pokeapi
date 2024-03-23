@@ -1,0 +1,54 @@
+<div class="content">
+    <mat-card>
+        <div class="display-img">
+            <div class="img-principal element-{{pokemon.types[0]}}">
+                <button (click)="toggleFav()"
+                [ngClass]="{'icon-favorite': true, 'fill': toggle}"><mat-icon>{{fav}}</mat-icon></button>
+                <span class="id-background">{{ formatID(pokemon.id) }}</span> 
+                <img src="../../../assets/images/pokemon/{{pokemon.id}}.png" 
+                alt="{{ pokemon.name }}"  mat-card-lg-image>
+            </div>      
+        </div>
+        
+        <mat-card-header>
+            <div class="header-display">
+                <span style="text-transform: capitalize;">{{pokemon.name}}</span>
+                <div class="icons-div">
+                    <span *ngFor="let type of pokemon.types" class="type-icon">
+                        <img class="icons" src="../../../assets/images/icons/{{typeIcons[type]}}.png" alt="">
+                    </span>
+                </div>
+            </div> 
+        </mat-card-header>
+
+        <mat-card-content>
+            <div class="box-content">
+                <span><span style="font-weight: 500;">Altura:</span> {{pokemon.height}} cm</span>
+                <span><span style="font-weight: 500;">Peso:</span> {{pokemon.weight}} Kg</span>
+            </div>
+           <div class="box-content">
+               <span><span style="font-weight: 500;">Habilidades: </span> <span style="margin-right: 10px; text-transform: capitalize;" *ngFor=" let abilities of pokemon?.abilities">
+                   <span>{{ abilities }}</span>
+               </span></span>
+           </div>
+            <div class="box-content2">
+                <div class="row" *ngFor=" let stats of pokemon.stats let i = index">
+                    <span class="name">{{textStats[stats.name]}}</span>
+                    <div class="bar">
+                        <div class="inside icon-{{pokemon.types[0]}}" [style.width.%]="getStatWidth(i, stats.base_stat)">
+                            <span class="base">{{stats.base_stat}}</span>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    <!-- <div class="div">
+        <button (click)="add()">add</button>
+        <input type="text" [(ngModel)]="fav">
+        <div *ngFor="let item of favorites">
+            <div>{{ item.id }}, {{ item.url }}</div>
+        </div>
+        <button (click)="delete()">delete</button>
+    </div> -->
+</div>

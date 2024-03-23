@@ -1,0 +1,26 @@
+<div class="content">
+    <div class="search">
+        <div class="form__group field">
+            <input type="text"  (keydown.enter)="submit($event)" class="form__field" placeholder="Name" [(ngModel)]="search" />
+            <label  for="name" class="form__label">Name</label>
+            <button (click)="submit($event)" class="btn-search"><mat-icon>search</mat-icon></button>
+        </div>
+    </div>
+    <div class="cards-grid">
+        <div class="cards" *ngFor="let p of searchs">
+            <app-card [url]="p.url"></app-card>
+        </div>
+        <div class="cards" *ngFor="let p of pokemon">
+            <app-card [url]="p.url"></app-card>
+        </div>
+    </div>
+</div>
+<div class="pagination">
+    <mat-paginator
+    [length]="max"
+    (page)="onPageChange($event)"  [pageSize]="25"
+    [pageSizeOptions]="[10, 15, 25, 50]"
+    aria-label="Select page"
+  >
+  </mat-paginator>
+</div>
