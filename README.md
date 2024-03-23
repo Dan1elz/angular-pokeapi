@@ -1,27 +1,33 @@
-# AngularPokeapi
+# angular-todolist
+<div style="text-align: justify">
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.1.
+### Descrição do Projeto
+<p>Este é um projeto de uma aplicação web feita em Angular para consumir a PokeAPI. Ele oferece uma variedade de funcionalidades para os entusiastas de Pokémon, permitindo explorar uma vasta coleção de informações sobre essas criaturas adoráveis.</p>
 
-## Development server
+### Tecnologias Utilizadas
+- ***Angular:*** Framework utilizado para o desenvolvimento do aplicativo web.
+- ***SCSS:*** O Sassy CSS foi utilizado para a estilização do projeto de forma mais eficaz.
+- ***TypeScript:*** Um superset de JavaScript utilizado para escrever toda a parte logica da aplicação.
+- ***PokeApi:*** Uma Api publica que fornece dados de centenas de pokemons.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Funcionalidades
+- *Tela Geral de Pokemons*
+- *Cards Individuais*
+- *Pesquisa por Nomes*
+- *Pesquisa por Categoria de Tipo*
+- *Opção de Favoritar Pokemons*
 
-## Code scaffolding
+## Imagens do Projeto
+![Tela Geral de Pokemons](./src/assets/images/imgs-repository/pokemons.png)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+![Cards Individuais](./src/assets/images/imgs-repository/card.png)
 
-## Build
+![Pesquisa por Nomes](./src/assets/images/imgs-repository/search.png)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+![Pesquisa por Categoria de Tipo](./src/assets/images/imgs-repository/categories.png)
 
-## Running unit tests
+![Opção de Favoritar Pokemons](./src/assets/images/imgs-repository/favorites.png)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Contribuindo
+<p>Contribuições são bem-vindas! Se você encontrar um problema ou desejar aprimorar este projeto, sinta-se à vontade para abrir uma issue ou enviar um pull request. Vamos Evoluir Juntos!</p>
