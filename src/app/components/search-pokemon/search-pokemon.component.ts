@@ -29,28 +29,24 @@ export class SearchPokemonComponent implements OnInit, OnDestroy {
      this.max = 913;
     }
    }
-   getAll(limit: number, offset: number) {
+  getAll(limit: number, offset: number) {
     this.searchs = [];
     this.sub = this.pokemonService.getAllPokemons(limit, offset)
     .subscribe({
       next: (res) => {
         const pokemon = res ?? null;
-        if(pokemon == null) {
+        if(pokemon == null) 
           return;
-        }
-        const pokemonArray = pokemon.results as any[];
-          
+
+        const pokemonArray = pokemon.results as any[];  
         this.pokemon = pokemonArray.map((pokemon: any) => ({
           name: pokemon.name,
           url: pokemon.url
         }));
 
-        console.log(this.pokemon)
       },
-      error: err => { 
-        console.error('Error fetching posts:', err);
-      },
-      complete: () => {console.log('Dados Entregues! content')} 
+      error: err => { console.error('Error fetching posts:', err)},
+      complete: () => { console.log('Dados Entregues! content')} 
     });
   }
   submit(event: any) {
@@ -66,9 +62,8 @@ export class SearchPokemonComponent implements OnInit, OnDestroy {
     .subscribe({
       next: (res) => {
         const pokemon = res ?? null;
-        if(pokemon == null) {
+        if(pokemon == null)
           return;
-        }
         
         const pokemonArray = pokemon as any[];
         this.max = pokemonArray.length;
@@ -80,19 +75,16 @@ export class SearchPokemonComponent implements OnInit, OnDestroy {
         }));
 
       },
-      error: err => { 
-        console.error('Error fetching posts:', err);
-      },
-      complete: () => {console.log('Dados Entregues! content')} 
+      error: err => { console.error('Error fetching posts:', err)},
+      complete: () => { console.log('Dados Entregues! content')} 
     });
   }
 
   onPageChange(event: any) {
     const i = event.pageIndex * event.pageSize;
 
-    if(this.searchs.length === 0) {
+    if(this.searchs.length === 0)
       this.getAll(event.pageSize, i);
-    }
     else {
       console.log(event.pageSize, i)
       this.searchPokemon(this.search, event.pageSize, i);

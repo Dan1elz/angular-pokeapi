@@ -1,5 +1,4 @@
-import { CreateEffectOptions, Injectable, OnInit, computed, effect, signal } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {Injectable, computed, effect, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -26,9 +25,9 @@ export class FavoriteServiceService {
       console.log(`A URL ${url} já existe nos favoritos.`);
       return;
     }
-      this.favorites.set(id, url);
-      var array:any[] = Array.from(this.favorites.entries());
-      this.favoriteSignal.update(set => array);
+    this.favorites.set(id, url);
+    var array:any[] = Array.from(this.favorites.entries());
+    this.favoriteSignal.update(set => array);
   }
 
   removeFavorite(id: string): void {

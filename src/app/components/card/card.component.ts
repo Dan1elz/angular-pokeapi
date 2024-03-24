@@ -1,8 +1,8 @@
-import { Component, Input, OnDestroy, OnInit, effect, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { PokemonService } from '../../services/pokemon.service';
 import { Subscription, take } from 'rxjs';
 import {MatCardModule} from '@angular/material/card';
-import { PokemonModelCard, PokemonModelInfo } from '../../models/pokemon.model';
+import { PokemonModelCard } from '../../models/pokemon.model';
 import { NgClass, NgFor } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
@@ -15,7 +15,7 @@ import { FavoriteServiceService } from '../../services/favorite-service.service'
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss'
 })
-export class CardComponent implements OnInit, OnDestroy {
+export class CardComponent implements OnInit {
   private pokemonService = inject(PokemonService);
   protected favoriteService = inject(FavoriteServiceService);
   private router = inject(Router);
@@ -26,12 +26,11 @@ export class CardComponent implements OnInit, OnDestroy {
   @Input() url: string ='';
 
   isHovered:boolean = false;
+  toggle:boolean = false
 
   favorites: any[] = [];
   fav = 'favorite_border';
 
-  toggle:boolean = false
-  
   pokemon: PokemonModelCard = {
     name: '',
     url: '',
@@ -62,14 +61,14 @@ export class CardComponent implements OnInit, OnDestroy {
   };
 
   ngOnInit(): void {
-    this.sub = this.pokemonService.getPokemonById(this.url)
+    this.pokemonService.getPokemonById(this.url)
     .pipe(take(1))
     .subscribe({
       next: (res) => {
         const pokemonFromApi = res ?? null;
-        if(pokemonFromApi == null) {
+        if(pokemonFromApi == null)
           return;
-        }
+
         this.pokemon = {
           name: res.name.replaceAll("-", " "),
           url: this.url,
@@ -78,19 +77,20 @@ export class CardComponent implements OnInit, OnDestroy {
           id: res.id
         };
       },
-      error: err => { 
-        console.error('Error fetching posts:', err);
-      },
+      error: err => { console.error('Error fetching posts:', err)},
       complete: () => { console.log('Dados Entreguess! card'); this.getFavorites();} 
     });
   }
+
   openPokemon() {
     this.router.navigate(['/pokemon'], { queryParams: { id: this.url } });
-  }  
+  }
+
   formatID(number: string) {
     var n = parseInt(number);
     return n.toString().padStart(3, '0');
   }
+
   getFavorites() {
     const data = new Map<string, string>(this.readonly);
     const value = JSON.parse(JSON.stringify(Array.from(data)));
@@ -115,11 +115,9 @@ export class CardComponent implements OnInit, OnDestroy {
       return this.favoriteService.removeFavorite(this.pokemon.id);
     }
   }
+  
   toggleCard(): void {
     if(this.toggle) {return;}
     this.isHovered = !this.isHovered; 
-}
-  ngOnDestroy(): void {
-     this.sub.unsubscribe();
   }
 }

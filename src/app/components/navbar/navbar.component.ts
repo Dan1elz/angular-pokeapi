@@ -21,16 +21,8 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
   private router = inject(Router);
-  pokemons() {
-    this.router.navigate(['']);
-  }
-  search() {
-    this.router.navigate(['search']);
-  }
-  categories() {
-    this.router.navigate(['categories']);
-  }
-  favorites() {
-    this.router.navigate(['favorites']);
-  }
+  pokemons() {  this.router.navigate([''])}
+  search() {  this.router.navigate(['search'])}
+  categories() {  this.router.navigate(['categories'])}
+  favorites() { this.router.navigate(['favorites'])}
 }

@@ -109,9 +109,9 @@ export class CategoriesPokemonComponent implements OnInit, OnDestroy {
     .subscribe({
       next: (res) => {
         const pokemon = res ?? null;
-        if(pokemon == null) {
+        if(pokemon == null) 
           return;
-        }
+
         const pokemonArray = pokemon.results as any[];
           
         this.pokemon = pokemonArray.map((pokemon: any) => ({
@@ -119,10 +119,8 @@ export class CategoriesPokemonComponent implements OnInit, OnDestroy {
           url: pokemon.url
         }));
       },
-      error: err => { 
-        console.error('Error fetching posts:', err);
-      },
-      complete: () => {console.log('Dados Entregues! content')} 
+      error: err => { console.error('Error fetching posts:', err)},
+      complete: () => { console.log('Dados Entregues! content')} 
     });
   }
 
@@ -130,7 +128,7 @@ export class CategoriesPokemonComponent implements OnInit, OnDestroy {
     this.selectedType = i;
     this.pokemon = [];
     this.itemsPerPage = 0;
-    
+
     this.getCategoryType(this.selectedType, 25, 0);
   }
   getCategoryType(i: number, limit: number, offset: number) {
@@ -140,9 +138,8 @@ export class CategoriesPokemonComponent implements OnInit, OnDestroy {
     .subscribe({
       next: (res) => {
         const pokemon = res ?? null;
-        if(pokemon == null) {
+        if(pokemon == null) 
           return;
-        }
 
         const pokemonArray = pokemon as any[];
         this.itemsPerPage = pokemonArray.length;
@@ -153,10 +150,8 @@ export class CategoriesPokemonComponent implements OnInit, OnDestroy {
           url: pokemon.url
         }));
       },
-      error: err => { 
-        console.error('Error fetching posts:', err);
-      },
-      complete: () => {console.log('Dados Entregues! content')} 
+      error: err => { console.error('Error fetching posts:', err)},
+      complete: () => { console.log('Dados Entregues! content')} 
     })
   }
 
@@ -164,9 +159,8 @@ export class CategoriesPokemonComponent implements OnInit, OnDestroy {
     const i = event.pageIndex * event.pageSize;
     if(this.category.length === 0)
       this.getAll(event.pageSize, i);
-    else {
+    else
       this.getCategoryType(this.selectedType, event.pageSize, i);
-    }
   }
   clearFilters() {
     this.selectedType = 0;

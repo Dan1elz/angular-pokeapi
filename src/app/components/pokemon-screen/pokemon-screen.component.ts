@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PokemonService } from '../../services/pokemon.service';
-import { Subscription, take } from 'rxjs';
+import { take } from 'rxjs';
 import { PokemonModelInfo } from '../../models/pokemon.model';
 import { MatCardModule } from '@angular/material/card';
 import { NgClass, NgFor, NgIf } from '@angular/common';
@@ -16,10 +16,9 @@ import { MatIcon } from '@angular/material/icon';
   templateUrl: './pokemon-screen.component.html',
   styleUrl: './pokemon-screen.component.scss'
 })
-export class PokemonScreenComponent implements OnInit, OnDestroy {
+export class PokemonScreenComponent implements OnInit {
   private pokemonServce = inject(PokemonService);
   protected favoriteService = inject(FavoriteServiceService);
-  protected sub = new Subscription();
 
   readonly = this.favoriteService.favoriteReandonly();
   
@@ -74,14 +73,14 @@ export class PokemonScreenComponent implements OnInit, OnDestroy {
     this.route.queryParamMap.subscribe(p => {
       const id = p.get('id');
 
-      this.sub = this.pokemonServce.getPokemonById(id!)
+      this.pokemonServce.getPokemonById(id!)
       .pipe(take(1))
       .subscribe({
         next: (res) => {
           const pokemonFromApi = res ?? null;
-          if(pokemonFromApi == null) {
+          if(pokemonFromApi == null) 
             return;
-          }
+
           this.pokemon = {
             name: res.name.replaceAll("-", " "),
             url: id!,
@@ -97,13 +96,10 @@ export class PokemonScreenComponent implements OnInit, OnDestroy {
             id: res.id
           }
         },
-        error: err => { 
-          console.error('Error fetching posts:', err);
-        },
+        error: err => { console.error('Error fetching posts:', err)},
         complete: () => { console.log('Dados Entreguess! pokemon'); this.getFavorites();} 
       });
     });
-    
   }
 
   getFavorites() {
@@ -111,9 +107,8 @@ export class PokemonScreenComponent implements OnInit, OnDestroy {
     const value = JSON.parse(JSON.stringify(Array.from(data)));
 
     value.forEach((f:any) => {
-      if(f[0] === this.pokemon.id) {
+      if(f[0] === this.pokemon.id) 
         this.toggle = true;  this.fav ='favorite';
-      }
     })
   }
 
@@ -144,7 +139,6 @@ export class PokemonScreenComponent implements OnInit, OnDestroy {
         break;
     }
     var percent = (base_stat / total) * 100;
-    // console.log('i');
     return percent;
   }
 
@@ -155,12 +149,7 @@ export class PokemonScreenComponent implements OnInit, OnDestroy {
       return this.favoriteService.addFavorite(this.pokemon.url, this.pokemon.id);
     } else {
       this.fav = 'favorite_border'
-      console.log(this.favorites)
       return this.favoriteService.removeFavorite(this.pokemon.id);
     }
-  }
-
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
   }
 }

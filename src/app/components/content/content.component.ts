@@ -22,17 +22,14 @@ export class ContentComponent implements OnInit, OnDestroy {
    this.getAll(25, 0);
   }
 
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
-  }
   getAll(limit: number, offset: number) {
     this.sub = this.pokemonService.getAllPokemons(limit, offset)
     .subscribe({
       next: (res) => {
         const pokemon = res ?? null;
-        if(pokemon == null) {
+        if(pokemon == null) 
           return;
-        }
+
         const pokemonArray = pokemon.results as any[];
 
         this.pokemon = pokemonArray.map((pokemon: any) => ({
@@ -40,15 +37,15 @@ export class ContentComponent implements OnInit, OnDestroy {
           url: pokemon.url
         }));
       },
-      error: err => { 
-        console.error('Error fetching posts:', err);
-      },
-      complete: () => {console.log('Dados Entregues! content')} 
+      error: err => { console.error('Error fetching posts:', err)},
+      complete: () => { console.log('Dados Entregues! content')} 
     });
   }
   onPageChange(event: any) {
     const i = event.pageIndex * event.pageSize;
-
     this.getAll(event.pageSize, i);
+  }
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }

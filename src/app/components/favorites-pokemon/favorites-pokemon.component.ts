@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, effect, inject } from '@angular/core';
+import { Component, OnInit, effect, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { FavoriteServiceService } from '../../services/favorite-service.service';
 import { CardComponent } from '../card/card.component';
@@ -12,12 +12,10 @@ import { MatPaginator } from '@angular/material/paginator';
   templateUrl: './favorites-pokemon.component.html',
   styleUrl: './favorites-pokemon.component.scss'
 })
-export class FavoritesPokemonComponent implements OnInit, OnDestroy {
+export class FavoritesPokemonComponent implements OnInit {
   protected favoriteService = inject(FavoriteServiceService);
-  protected sub = new Subscription();
   readonly:any = this.favoriteService.favoriteReandonly;
-
-
+  
   max: number = 0;
   favorites: any[] = [];
 
@@ -47,8 +45,5 @@ export class FavoritesPokemonComponent implements OnInit, OnDestroy {
     const i = event.pageIndex * event.pageSize;
     console.log(event.pageSize, i)
     this.getFavorites(event.pageSize, i);
-  }
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
   }
 }
