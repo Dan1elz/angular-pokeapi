@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PokemonService } from '../../services/pokemon.service';
-import { Subscription, map, take } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import { PokemonModelInfo } from '../../models/pokemon.model';
 import { MatCardModule } from '@angular/material/card';
 import { NgClass, NgFor, NgIf } from '@angular/common';

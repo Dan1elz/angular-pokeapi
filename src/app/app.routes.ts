@@ -1,29 +1,25 @@
 import { Routes } from '@angular/router';
 import { ContentComponent } from './components/content/content.component';
-import { PokemonScreenComponent } from './components/pokemon-screen/pokemon-screen.component';
-import { SearchPokemonComponent } from './components/search-pokemon/search-pokemon.component';
-import { CategoriesPokemonComponent } from './components/categories-pokemon/categories-pokemon.component';
-import { FavoritesPokemonComponent } from './components/favorites-pokemon/favorites-pokemon.component';
 
 export const routes: Routes = [
     {
         path: '',
         component: ContentComponent
-    },
-    {
+      },
+      {
         path: 'pokemon',
-        component: PokemonScreenComponent
-    },
-    {
+        loadComponent: () => import('./components/pokemon-screen/pokemon-screen.component').then(mod => mod.PokemonScreenComponent)
+      },
+      {
         path: 'search',
-        component: SearchPokemonComponent
-    },
-    {
+        loadComponent: () => import('./components/search-pokemon/search-pokemon.component').then(mod => mod.SearchPokemonComponent)
+      },
+      {
         path: 'categories',
-        component: CategoriesPokemonComponent
-    },
-    {
+        loadComponent: () => import('./components/categories-pokemon/categories-pokemon.component').then(mod => mod.CategoriesPokemonComponent)
+      },
+      {
         path: 'favorites',
-        component: FavoritesPokemonComponent
-    }
+        loadComponent: () => import('./components/favorites-pokemon/favorites-pokemon.component').then(mod => mod.FavoritesPokemonComponent)
+      }
 ];
