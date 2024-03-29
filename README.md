@@ -1,4 +1,4 @@
-# angular-todolist
+# angular-pokeapi
 <div style="text-align: justify">
 
 ### Descrição do Projeto
